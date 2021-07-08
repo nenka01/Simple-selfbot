@@ -1,4 +1,4 @@
-# Kato Whatsapp Bot
+# Simple Whatsapp Bot
 
 [![My Instagram](https://img.shields.io/badge/My%20Instagram-@lindoww.8-green)](https://www.instagram.com/lindoww.8)
 
@@ -30,6 +30,10 @@ A simple base selfbot
 ### Penggunaan
 
 ketik di terminal `node index.js`, kemudian scan kode QR yang tersedia di console/terminal untuk menjalakannya!
+
+### Readme By
+
+[`Kato`](https://github.com/KatowProject)
 
 <p align="center"><font size = "5">Selamat Mencoba! </font><br></p>
 <p align="center"><img src="https://cdn.discordapp.com/attachments/519859252966457369/735280356441456641/4c64e343e788251fb15dac0f4c557337.gif" /></p>
