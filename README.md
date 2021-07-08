@@ -16,15 +16,9 @@ A simple base selfbot
 ### Instalasi
 
 - Instal node.js
-
 - Install git
-
 - Clone repo ini.
-```cmd
-$ git clone https://github.com/mccnlight/Simple-selfbot.git
-```
 - Instal terlebih dahulu dengan cara mengetik `npm install`.<br>
-
 - Edit file `config/config.json`:
 
 ```js
@@ -38,9 +32,9 @@ $ git clone https://github.com/mccnlight/Simple-selfbot.git
 
 ketik di terminal `node main.js`, kemudian scan kode QR yang tersedia di console/terminal untuk menjalakannya!
 
-### Readme By
+### README by
 
-[`Kato`](https://github.com/KatowProject)
+[`KatowProject`](https://github.com/KatowProject)
 
 <p align="center"><font size = "5">Selamat Mencoba! </font><br></p>
 <p align="center"><img src="https://cdn.discordapp.com/attachments/519859252966457369/735280356441456641/4c64e343e788251fb15dac0f4c557337.gif" /></p>
