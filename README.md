@@ -3,7 +3,7 @@
 [![My Instagram](https://img.shields.io/badge/My%20Instagram-@lindoww.8-green)](https://www.instagram.com/lindoww.8)
 
 
-<p align="center"><img src="https://i.pinimg.com/originals/3c/37/9e/3c379e30fdf69c7ab688e596c873bf2c.png" /></p>
+<p align="center"><img src="https://mccnlight-api.herokuapp.com/api/akaneko/wallpapers" /></p>
 
 ## About
 
