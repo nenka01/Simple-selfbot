@@ -1,0 +1,35 @@
+{
+    "name": "Simple-selfbot",
+    "version": "1.0.0",
+    "description": "Simple selfbot made by lintod",
+    "main": "main.js",
+    "directories": {
+        "test": "test"
+    },
+    "dependencies": {
+        "@adiwajshing/baileys": "^3.5.1",
+        "axios": "^0.21.1",
+        "form-data": "^4.0.0",
+        "instagram-web-api": "^2.2.2",
+        "moment-timezone": "^0.5.33",
+        "node-fetch": "^2.6.1",
+        "request": "^2.88.2"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node main.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mccnlight/Simple-selfbot.git"
+    },
+    "keywords": [
+        "selfbot"
+    ],
+    "author": "lintod",
+    "bugs": {
+        "url": "https://github.com/mccnlight/Simple-selfbot.git"
+    },
+    "homepage": "https://github.com/mccnlight/Simple-selfbot.git"
+}
