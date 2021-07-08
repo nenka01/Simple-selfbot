@@ -20,7 +20,7 @@ A simple base selfbot
 - Instal terlebih dahulu dengan cara mengetik `npm install`.<br>
 - Edit file `config/config.json`:
 
-```json
+```js
 {
   "username": "", // Username Instagram
   "password": "" // Password Instagram
