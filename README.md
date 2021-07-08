@@ -16,7 +16,11 @@ A simple base selfbot
 ### Instalasi
 
 - Instal node.js
+- Install git
 - Clone repo ini.
+```cmd
+$ git clone https://github.com/mccnlight/Simple-selfbot.git
+```
 - Instal terlebih dahulu dengan cara mengetik `npm install`.<br>
 - Edit file `config/config.json`:
 
