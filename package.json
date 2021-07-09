@@ -9,6 +9,7 @@
     "dependencies": {
         "@adiwajshing/baileys": "^3.5.1",
         "axios": "^0.21.1",
+        "tictactoejs": "*",
         "form-data": "^4.0.0",
         "instagram-web-api": "^2.2.2",
         "moment-timezone": "^0.5.33",
