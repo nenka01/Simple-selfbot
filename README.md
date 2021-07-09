@@ -37,5 +37,9 @@ ketik di terminal `node main.js`, kemudian scan kode QR yang tersedia di console
 [`KatowProject`](https://github.com/KatowProject)
 [`Fazone`](https://github.com/fazonetea)
 
+### Join My Group
+
+[`All About Bot WhatsApp`](https://chat.whatsapp.com/CEDyT5JRhUrIhHL12V3Ga3)
+
 <p align="center"><font size = "5">Selamat Mencoba! </font><br></p>
 <p align="center"><img src="https://cdn.discordapp.com/attachments/519859252966457369/735280356441456641/4c64e343e788251fb15dac0f4c557337.gif" /></p>
