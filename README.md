@@ -9,7 +9,7 @@
 
 A simple base selfbot
 
-### Dokumentasi Baileys
+### Dokumentasi baileys
 
 [Klik di sini!](https://adiwajshing.github.io/Baileys/)
 
@@ -32,12 +32,12 @@ A simple base selfbot
 
 ketik di terminal `node main.js`, kemudian scan kode QR yang tersedia di console/terminal untuk menjalakannya!
 
-### Thanks To
+### Thanks to
 
 [`KatowProject`](https://github.com/KatowProject)
 [`Fazone`](https://github.com/fazonetea)
 
-### Join My Group
+### Join group
 
 [`All About Bot WhatsApp`](https://chat.whatsapp.com/CEDyT5JRhUrIhHL12V3Ga3)
 
