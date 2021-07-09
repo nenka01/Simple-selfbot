@@ -6,15 +6,10 @@
    },
    "isOn": [
       "6282335628178@s.whatsapp.net",
-      "5216145566656@s.whatsapp.net",
-      "5216145566656@s.whatsapp.net"
    ],
    "soloSes": {
       "6283871644986@s.whatsapp.net": {
          "start": false
-      },
-      "5216145566656@s.whatsapp.net": {
-         "start": true
       }
    }
 }
