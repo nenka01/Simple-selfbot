@@ -7,7 +7,7 @@ const moment = require("moment-timezone");
 const fs = require('fs');
 const chalk = require("chalk");
 
-const { setppig, login, logout, follow, upinstastory, unfollow } = require("./lib/handlerIg.js");
+const { setppig, block, unblock, komen, login, logout, follow, upinstastory, unfollow, likepost, unlikepost } = require("./lib/handlerIg.js");
 const { Log, LogError } = require("./lib/log.js");
 const { uptotele, uptonaufal, uploadFile } = require('./lib/uploadimage');
 const { menu } = require("./lib/menu")
@@ -120,24 +120,50 @@ lintod.on('chat-update', async(lin) => {
           break
           case "unfollow":
           if (!args.length) return reply('Masukan username yang mau di unfollow')
-          usernamea = args.join(" ")
+          var usernamea = args.join(" ")
           await unfollow(usernamea, from, prefix)
           break
           case "follow":
           if (!args.length) return reply('Masukan username yang mau di follow')
-          usernamea = args.join(" ")
+          var usernamea = args.join(" ")
           await follow(usernamea, from, prefix)
           break
           case "upinstastory":
           if (!isQuotedImage) return reply("baru support image kak")
-          media = await downloadM()
-          const uplii = await uptotele(media)
-          ini = args.join(" ")
+          var media = await downloadM()
+          var uplii = await uptotele(media)
+          var ini = args.join(" ")
           await upinstastory(uplii, ini, from, prefix) 
           break
           case "help":
           reply(menu(prefix))
           break
+          case "likepost":
+            if (!args.length) return reply("Link postingan yang mau di like mana?")
+            var id = args.join(" ")
+            await likepost(id, from, lin, prefix)
+          case "unlikepost":
+            if (!args.length) return reply("Link postingan yang mau di like mana?")
+            var id = args.join(" ")
+            await unlikepost(id, from, lin, prefix)
+          case "komen":
+            if (!args.length) return reply("Link yang mau di add komen mana")
+            var gh = body.slice(7)
+            var link = gh.split("|")[0];
+            var caption = gh.split("|")[1];
+            if (!link) return reply("link nya mana?")
+            if (!caption) return reply(`tambahin caption example ${prefix}komen https://www.instagram.com/p/CREaysLgeG4/?utm_medium=copy_link|komen mu`)
+            await komen(link, caption, from, lin, prefix)
+            case "blockig":
+              if (!args.length) return reply("Username akunnya mana?")
+              var username = args.join(" ")
+              await block(username, from, lin, prefix)
+              break
+            case "unblockig":
+              if (!args.length) return reply("Username akunnya mana?")
+              var username = args.join(" ")
+              await unblock(username, from, lin, prefix)
+              break
         }
     } catch (e) {
       LogError(e)
