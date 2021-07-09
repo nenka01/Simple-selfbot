@@ -9,6 +9,7 @@ const chalk = require("chalk");
 
 const { setppig, block, unblock, komen, login, logout, follow, upinstastory, unfollow, likepost, unlikepost } = require("./lib/handlerIg.js");
 const { Log, LogError } = require("./lib/log.js");
+const { downloadig, igstory } = require("./lib/instadl.js")
 const { uptotele, uptonaufal, uploadFile } = require('./lib/uploadimage');
 const { menu } = require("./lib/menu")
 const conn = require("./lib/connect");
@@ -107,45 +108,47 @@ lintod.on('chat-update', async(lin) => {
         
         switch (command) {
           case "setppig":
-          if (!isQuotedImage) return reply('Reply foto yang ingin dijadikan pp ig')
-          var media = await downloadM()
-          var photo = await uptotele(media)
-          await setppig(from, `${photo}`, prefix) 
+            if (!isQuotedImage) return reply('Reply foto yang ingin dijadikan pp ig')
+            var media = await downloadM()
+            var photo = await uptotele(media)
+            await setppig(from, `${photo}`, prefix) 
           break
           case "logininsta":
-          await login(from)
+            await login(from)
           break
           case "logoutinsta":
-          await logout(from)
+            await logout(from)
           break
           case "unfollow":
-          if (!args.length) return reply('Masukan username yang mau di unfollow')
-          var usernamea = args.join(" ")
-          await unfollow(usernamea, from, prefix)
+            if (!args.length) return reply('Masukan username yang mau di unfollow')
+            var usernamea = args.join(" ")
+            await unfollow(usernamea, from, prefix)
           break
           case "follow":
-          if (!args.length) return reply('Masukan username yang mau di follow')
-          var usernamea = args.join(" ")
-          await follow(usernamea, from, prefix)
+            if (!args.length) return reply('Masukan username yang mau di follow')
+            var usernamea = args.join(" ")
+            await follow(usernamea, from, prefix)
           break
           case "upinstastory":
-          if (!isQuotedImage) return reply("baru support image kak")
-          var media = await downloadM()
-          var uplii = await uptotele(media)
-          var ini = args.join(" ")
-          await upinstastory(uplii, ini, from, prefix) 
+            if (!isQuotedImage) return reply("baru support image kak")
+            var media = await downloadM()
+            var uplii = await uptotele(media)
+            var ini = args.join(" ")
+            await upinstastory(uplii, ini, from, prefix) 
           break
           case "help":
-          reply(menu(prefix))
+            reply(menu(prefix))
           break
           case "likepost":
             if (!args.length) return reply("Link postingan yang mau di like mana?")
             var id = args.join(" ")
             await likepost(id, from, lin, prefix)
+            break
           case "unlikepost":
             if (!args.length) return reply("Link postingan yang mau di like mana?")
             var id = args.join(" ")
             await unlikepost(id, from, lin, prefix)
+            break
           case "komen":
             if (!args.length) return reply("Link yang mau di add komen mana")
             var gh = body.slice(7)
@@ -154,16 +157,25 @@ lintod.on('chat-update', async(lin) => {
             if (!link) return reply("link nya mana?")
             if (!caption) return reply(`tambahin caption example ${prefix}komen https://www.instagram.com/p/CREaysLgeG4/?utm_medium=copy_link|komen mu`)
             await komen(link, caption, from, lin, prefix)
-            case "blockig":
-              if (!args.length) return reply("Username akunnya mana?")
+            break
+          case "blockig":
+            if (!args.length) return reply("Username akunnya mana?")
               var username = args.join(" ")
-              await block(username, from, lin, prefix)
-              break
-            case "unblockig":
-              if (!args.length) return reply("Username akunnya mana?")
+            await block(username, from, lin, prefix)
+          break
+          case "unblockig":
+            if (!args.length) return reply("Username akunnya mana?")
               var username = args.join(" ")
-              await unblock(username, from, lin, prefix)
-              break
+            await unblock(username, from, lin, prefix)
+            break
+          case "igdl":
+            if (!args.length) return reply("link nya mana dek?")
+            await downloadig(args[0], from, lin, prefix)
+            break
+          case "igstory":
+            if (!args.length) return reply("username nya mana dek?")
+            await igstory(args[0], from, lin, prefix)
+            break
         }
     } catch (e) {
       LogError(e)
