@@ -1,0 +1,20 @@
+{
+   "2559": {
+      "player1": "6282138737366@s.whatsapp.net",
+      "player2": "6285954327299@s.whatsapp.net",
+      "isStart": false
+   },
+   "isOn": [
+      "6282335628178@s.whatsapp.net",
+      "5216145566656@s.whatsapp.net",
+      "5216145566656@s.whatsapp.net"
+   ],
+   "soloSes": {
+      "6283871644986@s.whatsapp.net": {
+         "start": false
+      },
+      "5216145566656@s.whatsapp.net": {
+         "start": true
+      }
+   }
+}
