@@ -176,6 +176,10 @@ lintod.on('chat-update', async(lin) => {
             if (!args.length) return reply("username nya mana dek?")
             await igstory(args[0], from, lin, prefix)
             break
+          case "tictactoe":
+            var Tictac = require('./lib/tiktaktu.js')
+            await Tictac.startSolo(sender, from)
+            break
         }
     } catch (e) {
       LogError(e)
