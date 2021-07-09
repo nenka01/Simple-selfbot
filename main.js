@@ -8,6 +8,7 @@ const fs = require('fs');
 const chalk = require("chalk");
 
 const { setppig, login, logout, follow, upinstastory, unfollow } = require("./lib/handlerIg.js");
+const { Log, LogError } = require("./lib/log.js");
 const { uptotele, uptonaufal, uploadFile } = require('./lib/uploadimage');
 const { menu } = require("./lib/menu")
 const conn = require("./lib/connect");
@@ -32,6 +33,7 @@ lintod.on('chat-update', async(lin) => {
         const typeQuoted = Object.keys(quoted)[0]
         const body = lin.message.conversation || lin.message[type].caption || lin.message[type].text || ""
         let userMsg = (type === 'conversation' && lin.message.conversation) ? lin.message.conversation : (type == 'imageMessage') && lin.message.imageMessage.caption ? lin.message.imageMessage.caption : (type == 'videoMessage') && lin.message.videoMessage.caption ? lin.message.videoMessage.caption : (type == 'extendedTextMessage') && lin.message.extendedTextMessage.text ? lin.message.extendedTextMessage.text : ''
+        
         prefix = /^[Â°â€¢Ï€Ã·Ã—Â¶âˆ†Â£Â¢â‚¬Â¥Â®â„¢âœ“=|~!?@#%^&.zZ_•\/\\Â©^<+]/.test(userMsg) ? userMsg.match(/^[Â°â€¢Ï€Ã·Ã—Â¶âˆ†Â£Â¢â‚¬Â¥Â®â„¢âœ“=|~!?@#%^&.zZ_+•\/\\Â©^<+]/gi)[0] : '-'
         chats = (type === 'conversation') ? lin.message.conversation : (type === 'extendedTextMessage') ? lin.message.extendedTextMessage.text : ''
         budy = (type === 'conversation' && lin.message.conversation.startsWith(prefix)) ? lin.message.conversation : (type == 'imageMessage') && lin.message.imageMessage.caption.startsWith(prefix) ? lin.message.imageMessage.caption : (type == 'videoMessage') && lin.message.videoMessage.caption.startsWith(prefix) ? lin.message.videoMessage.caption : (type == 'extendedTextMessage') && lin.message.extendedTextMessage.text.startsWith(prefix) ? lin.message.extendedTextMessage.text : ''
@@ -101,9 +103,8 @@ lintod.on('chat-update', async(lin) => {
         return await lintod.downloadMediaMessage(encmediaa)
         }
         
-        if (!isGroup && isCmd) console.log(chalk.whiteBright("├"), chalk.keyword("aqua")("[ COMMAND ]"), chalk.whiteBright(typeMessage), chalk.greenBright("from"), chalk.keyword("yellow")(senderNumber))
-        if (isGroup && isCmd) console.log(chalk.whiteBright("├"), chalk.keyword("aqua")("[ COMMAND ]"), chalk.whiteBright(typeMessage), chalk.greenBright("from"), chalk.keyword("yellow")(senderNumber), chalk.greenBright("in"), chalk.keyword("yellow")(groupName))
-      
+        Log(isGroup, isCmd, typeMessage, senderNumber, groupName)
+        
         switch (command) {
           case "setppig":
           if (!isQuotedImage) return reply('Reply foto yang ingin dijadikan pp ig')
@@ -139,27 +140,6 @@ lintod.on('chat-update', async(lin) => {
           break
         }
     } catch (e) {
-      console.log(chalk.whiteBright("├"), chalk.keyword("aqua")("[  ERROR  ]"), chalk.keyword("red")(e))
+      LogError(e)
     }
 })
-
-nocache('./main.js', module => console.log(`${module} is now updated!`))
-
-function nocache(module, cb = () => { }) {
-    console.log('Module', `'${module}'`, 'is now being watched for changes')
-    fs.watchFile(require.resolve(module), async () => {
-        await uncache(require.resolve(module))
-        cb(module)
-    })
-}
-
-function uncache(module = '.') {
-    return new Promise((resolve, reject) => {
-        try {
-            delete require.cache[require.resolve(module)]
-            resolve()
-        } catch (e) {
-            reject(e)
-        }
-    })
-}
