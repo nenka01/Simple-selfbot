@@ -21,6 +21,10 @@ const {
   unlikepost
 } = require("./lib/handlerIg.js");
 const {
+  y2mateV,
+  y2mateA
+} = require("./lib/ytdl.js");
+const {
   Log,
   LogError
 } = require("./lib/log.js");
@@ -44,6 +48,9 @@ const conn = require("./lib/connect");
 
 conn.connect()
 const lintod = conn.lintod
+
+let multipref = true;
+let noprefix = false;
 
 lintod.on('chat-update', async(lin) => {
   try {
@@ -75,10 +82,16 @@ lintod.on('chat-update', async(lin) => {
     const body = lin.message.conversation || lin.message[type].caption || lin.message[type].text || ""
     let userMsg = (type === 'conversation' && lin.message.conversation) ? lin.message.conversation: (type == 'imageMessage') && lin.message.imageMessage.caption ? lin.message.imageMessage.caption: (type == 'videoMessage') && lin.message.videoMessage.caption ? lin.message.videoMessage.caption: (type == 'extendedTextMessage') && lin.message.extendedTextMessage.text ? lin.message.extendedTextMessage.text: ''
 
-    prefix = /^[Â°â€¢Ï€Ã·Ã—Â¶âˆ†Â£Â¢â‚¬Â¥Â®â„¢âœ“=|~!?@#%^&.zZ_•\/\\Â©^<+]/.test(userMsg) ? userMsg.match(/^[Â°â€¢Ï€Ã·Ã—Â¶âˆ†Â£Â¢â‚¬Â¥Â®â„¢âœ“=|~!?@#%^&.zZ_+•\/\\Â©^<+]/gi)[0]: '-'
-    
+    if (multipref) {
+      var prefix = /^[Â°â€¢Ï€Ã·Ã—Â¶âˆ†Â£Â¢â‚¬Â¥Â®â„¢âœ“=|~!?@#%^&.zZ_•\/\\Â©^<+]/.test(userMsg) ? userMsg.match(/^[Â°â€¢Ï€Ã·Ã—Â¶âˆ†Â£Â¢â‚¬Â¥Â®â„¢âœ“=|~!?@#%^&.zZ_+•\/\\Â©^<+]/gi)[0]: '-'
+    } else {
+      if (noprefix) {
+        prefix = ""
+      }
+    }
+
     chats = (type === 'conversation') ? lin.message.conversation: (type === 'extendedTextMessage') ? lin.message.extendedTextMessage.text: ''
-    
+
     budy = (type === 'conversation' && lin.message.conversation.startsWith(prefix)) ? lin.message.conversation: (type == 'imageMessage') && lin.message.imageMessage.caption.startsWith(prefix) ? lin.message.imageMessage.caption: (type == 'videoMessage') && lin.message.videoMessage.caption.startsWith(prefix) ? lin.message.videoMessage.caption: (type == 'extendedTextMessage') && lin.message.extendedTextMessage.text.startsWith(prefix) ? lin.message.extendedTextMessage.text: ''
 
     if (prefix != "") {
@@ -152,6 +165,32 @@ lintod.on('chat-update', async(lin) => {
     Log(isGroup, isCmd, typeMessage, senderNumber, groupName)
 
     switch (command) {
+      case "ytdl":
+        if (!args.length) return reply(`Masukan link\n\nExample : ${prefix}ytdl https://youtu.be/oitBJxR9UUE -video`)
+        argz = args.join(" ")
+        if (!argz.endsWith("-video") && !argz.endsWith("-audio")) return reply("Masukan option\n\nOption :\n\n- audio\n- video\n\nExample : !ytdl link -video")
+        if (argz.endsWith("-video")) {
+          await y2mateV(args[0], from, lin)
+        } else if (argz.endsWith("-audio")) {
+          await y2mateA(args[0], from, lin)
+        }
+        break
+      case "prefix":
+        if (!args.length) return reply(`Opsi prefix\n\n- noprefix\n- multi\n\nExample : ${prefix}prefix noprefix`)
+        if (args[0] === "multi") {
+          multipref = true;
+          reply("berhasil mengubah ke multi prefix")
+        } else if (args[0] === "noprefix") {
+          multipref = false;
+          noprefix = true;
+          reply("berhasil mengubah ke no prefix")
+        } else {
+          reply("pilih multi atau norefix")
+        }
+        break
+      case "test":
+        if (!args[0].match(/a|b|c/)) return reply("pilih a b atau c");
+        break
       case "setppig":
         if (!isQuotedImage) return reply('Reply foto yang ingin dijadikan pp ig')
         var media = await downloadM()
