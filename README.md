@@ -30,7 +30,7 @@ A simple base selfbot
 
 ### Penggunaan
 
-ketik di terminal `node main.js`, kemudian scan kode QR yang tersedia di console/terminal untuk menjalakannya!
+ketik di terminal `node main.js` kemudian scan kode QR yang tersedia di console/terminal untuk menjalakannya!
 
 ### Thanks to
 
