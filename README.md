@@ -18,7 +18,7 @@ A simple base selfbot
 - Instal node.js
 - Install git
 - Clone repo ini.
-- Instal terlebih dahulu dengan cara mengetik `npm install`.<br>
+- Instal terlebih dahulu dengan cara mengetik `npm install` atau ketik di terminal `bash install.sh`.<br>
 - Edit file `config/config.json`:
 
 ```js
@@ -34,7 +34,7 @@ ketik di terminal `node main.js`, kemudian scan kode QR yang tersedia di console
 
 ### Thanks to
 
-[`KatowProject`](https://github.com/KatowProject)
+[`KatowProject`](https://github.com/KatowProject)<br>
 [`Fazone`](https://github.com/fazonetea)
 
 ### Join group
