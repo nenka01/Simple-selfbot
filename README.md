@@ -1,7 +1,7 @@
 # Simple Whatsapp Bot
 
-[![My Instagram](https://img.shields.io/badge/My%20Instagram-@lindoww.8-green)](https://www.instagram.com/lindoww.8)<br>
-[![Trakteer](https://img.shields.io/badge/Support%20Me!-Trakteer-pink)](https://trakteer.id/lintodamamiya)
+[![My Instagram](https://img.shields.io/badge/My%20Instagram-@lindoww.8-green)](https://www.instagram.com/lindoww.8)
+[![Trakteer](https://img.shields.io/badge/Support%20Me!-Trakteer-green)](https://trakteer.id/lintodamamiya)
 
 
 <p align="center"><img src="https://i.pinimg.com/originals/3c/37/9e/3c379e30fdf69c7ab688e596c873bf2c.png" /></p>
