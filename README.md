@@ -1,6 +1,7 @@
 # Simple Whatsapp Bot
 
 [![My Instagram](https://img.shields.io/badge/My%20Instagram-@lindoww.8-green)](https://www.instagram.com/lindoww.8)
+
 [![Trakteer](https://img.shields.io/badge/Support%20Me!-Trakteer-green)](https://trakteer.id/lintodamamiya)
 
 
@@ -35,7 +36,8 @@ ketik di terminal `node main.js` kemudian scan kode QR yang tersedia di console/
 
 ### Thanks to
 
-[`KatowProject`](https://github.com/KatowProject)<br>
+[`KatowProject`](https://github.com/KatowProject)
+
 [`Fazone`](https://github.com/fazonetea)
 
 ### Join group
