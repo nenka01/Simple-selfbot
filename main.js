@@ -43,7 +43,8 @@ const {
 const {
   getBuffer
 } = require ("./lib/help");
-
+const util = require("util");
+const { exec } = require("child_process");
 const conn = require("./lib/connect");
 
 conn.connect()
@@ -264,8 +265,51 @@ lintod.on('chat-update', async(lin) => {
         var Tictac = require('./lib/tiktaktu.js')
         await Tictac.startSolo(sender, from)
         break
+      default:
+        if (body.startsWith('$')) {
+          var konsol = body.slice(2)
+          console.log(konsol)
+          exec(konsol, (err, stdout) => {
+            if (err) return reply(`${err}`)
+            if (stdout) {
+              reply(`${stdout}`)
+            }
+          })
+        }
+        if (body.startsWith('>')) {
+          var konsol = body.slice(2)
+          console.log(konsol)
+          Return = (sul) => {
+            var sat = JSON.stringify(sul, null, 2)
+            bang = util.format(sat)
+            if (sat == undefined) {
+              bang = util.format(sul)
+            }
+            return reply(bang)
+          }
+          try {
+            reply(util.format(eval(`;(async () => { ${konsol} })()`).catch(e => {
+              err = String(e)
+              js = JSON.stringify(e, null, 2)
+              if (js == '{}') js = err
+              th = '```'
+              js = `${th}${js}${th}`
+              reply(`_${err}_\n\n` + js)
+            })))
+          } catch(e) {
+            err = String(e)
+            js = JSON.stringify(e, null, 2)
+            if (js == '{}') js = {
+              err
+            }
+            th = '```'
+            js = JSON.stringify(js, null, 2)
+            js = `${th}${js}${th}`
+            reply(`_${err}_\n\n` + js)
+          }
+        }
+      }
+    } catch (e) {
+      LogError(e)
     }
-  } catch (e) {
-    LogError(e)
-  }
-})
+  })
