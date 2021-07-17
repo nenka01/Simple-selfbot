@@ -1,48 +1,14 @@
-const {
-  MessageType,
-  mentionedJid,
-  processTime
-} = require("@adiwajshing/baileys");
+const { MessageType, mentionedJid, processTime } = require("@adiwajshing/baileys");
 const moment = require("moment-timezone");
 const fs = require('fs');
 const chalk = require("chalk");
-
-const {
-  setppig,
-  block,
-  unblock,
-  komen,
-  login,
-  logout,
-  follow,
-  upinstastory,
-  unfollow,
-  likepost,
-  unlikepost
-} = require("./lib/handlerIg.js");
-const {
-  y2mateV,
-  y2mateA
-} = require("./lib/ytdl.js");
-const {
-  Log,
-  LogError
-} = require("./lib/log.js");
-const {
-  downloadig,
-  igstory
-} = require("./lib/instadl.js");
-const {
-  uptotele,
-  uptonaufal,
-  uploadFile
-} = require('./lib/uploadimage');
-const {
-  menu
-} = require("./lib/menu");
-const {
-  getBuffer
-} = require ("./lib/help");
+const { setppig, block, unblock, komen, login, logout, follow, upinstastory, unfollow, likepost, unlikepost } = require("./lib/handlerIg.js");
+const { y2mateV, y2mateA } = require("./lib/ytdl.js");
+const { Log, LogError } = require("./lib/log.js");
+const { downloadig, igstory } = require("./lib/instadl.js");
+const { uptotele, uptonaufal, uploadFile } = require('./lib/uploadimage');
+const { menu } = require("./lib/menu");
+const { getBuffer } = require ("./lib/help");
 const util = require("util");
 const { exec } = require("child_process");
 const conn = require("./lib/connect");
@@ -68,19 +34,7 @@ lintod.on('chat-update', async(lin) => {
     const content = JSON.stringify(lin.message)
     const from = lin.key.remoteJid
     const type = Object.keys(lin.message)[0]
-    const {
-      text,
-      extendedText,
-      contact,
-      location,
-      liveLocation,
-      image,
-      video,
-      sticker,
-      document,
-      audio,
-      product
-    } = MessageType
+    const { text, extendedText, contact, location, liveLocation, image, video, sticker, document, audio, product } = MessageType
     const quoted = type == 'extendedTextMessage' && lin.message.extendedTextMessage.contextInfo != null ? lin.message.extendedTextMessage.contextInfo.quotedMessage || []: []
     const typeQuoted = Object.keys(quoted)[0]
     const body = lin.message.conversation || lin.message[type].caption || lin.message[type].text || ""
@@ -167,8 +121,25 @@ lintod.on('chat-update', async(lin) => {
     }
 
     Log(isGroup, isCmd, typeMessage, senderNumber, groupName)
+    
+    var idButton = type === "buttonsResponseMessage" ? lin.message.buttonsResponseMessage.selectedButtonId: ""
+    var idButton = `${idButton}`
+    switch (idButton) {
+      case "example":
+        reply("this response button 1");
+        break
+      case "example2":
+        reply("this response button 2");
+        break
+    }
 
     switch (command) {
+      case "button":
+        var buttons = [{ buttonId: 'example', buttonText: { displayText: 'yes' }, type: 1 }, { buttonId: 'example2', buttonText: { displayText: 'no' }, type: 1 }]
+        var buttonsMessage = { contentText: `Do you love me?`, footerText: 'click this', buttons: buttons, headerType: 1 }
+        var sendMsg = await lintod.prepareMessageFromContent(from, { buttonsMessage }, {})
+        lintod.relayWAMessage(sendMsg, { waitForAck: true })
+        break
       case "ytdl":
         if (!args.length) return reply(`Masukan link\n\nExample : ${prefix}ytdl https://youtu.be/oitBJxR9UUE -video`)
         argz = args.join(" ")
