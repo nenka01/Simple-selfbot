@@ -51,6 +51,7 @@ conn.connect()
 const lintod = conn.lintod
 
 let multipref = true;
+let self = true;
 let noprefix = false;
 
 lintod.on('chat-update', async(lin) => {
@@ -61,7 +62,9 @@ lintod.on('chat-update', async(lin) => {
     lin = lin.messages.all()[0]
     if (!lin.message) return
     lin.message = (Object.keys(lin.message)[0] === 'ephemeralMessage') ? lin.message.ephemeralMessage.message: lin.message
+    if (self) {
     if (!lin.key.fromMe) return;
+    }
     const content = JSON.stringify(lin.message)
     const from = lin.key.remoteJid
     const type = Object.keys(lin.message)[0]
@@ -261,53 +264,20 @@ lintod.on('chat-update', async(lin) => {
         if (!args.length) return reply("username nya mana dek?")
         await igstory(args[0], from, lin, prefix)
         break
+      case "mode":
+        if (!args.length) return reply("Masukan option\n\n1. -public\n2. -self\n\nExample : #mode -public")
+        if (args[0] === "-public") {
+        self = false;
+        reply(`Succes`)
+        } else if (args[0] === "-self") {
+        self = true;
+        reply(`Succes`)
+        }
+        break
       case "tictactoe":
         var Tictac = require('./lib/tiktaktu.js')
         await Tictac.startSolo(sender, from)
         break
-      default:
-        if (body.startsWith('$')) {
-          var konsol = body.slice(2)
-          console.log(konsol)
-          exec(konsol, (err, stdout) => {
-            if (err) return reply(`${err}`)
-            if (stdout) {
-              reply(`${stdout}`)
-            }
-          })
-        }
-        if (body.startsWith('>')) {
-          var konsol = body.slice(2)
-          console.log(konsol)
-          Return = (sul) => {
-            var sat = JSON.stringify(sul, null, 2)
-            bang = util.format(sat)
-            if (sat == undefined) {
-              bang = util.format(sul)
-            }
-            return reply(bang)
-          }
-          try {
-            reply(util.format(eval(`;(async () => { ${konsol} })()`).catch(e => {
-              err = String(e)
-              js = JSON.stringify(e, null, 2)
-              if (js == '{}') js = err
-              th = '```'
-              js = `${th}${js}${th}`
-              reply(`_${err}_\n\n` + js)
-            })))
-          } catch(e) {
-            err = String(e)
-            js = JSON.stringify(e, null, 2)
-            if (js == '{}') js = {
-              err
-            }
-            th = '```'
-            js = JSON.stringify(js, null, 2)
-            js = `${th}${js}${th}`
-            reply(`_${err}_\n\n` + js)
-          }
-        }
       }
     } catch (e) {
       LogError(e)
