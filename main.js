@@ -8,7 +8,7 @@ const { Log, LogError } = require("./lib/log.js");
 const { downloadig, igstory } = require("./lib/instadl.js");
 const { uptotele, uptonaufal, uploadFile } = require('./lib/uploadimage');
 const { menu } = require("./lib/menu");
-const { getBuffer } = require ("./lib/help");
+const { getBuffer, getRandom } = require ("./lib/help");
 const util = require("util");
 const { exec } = require("child_process");
 const conn = require("./lib/connect");
@@ -245,6 +245,26 @@ lintod.on('chat-update', async(lin) => {
         reply(`Succes`)
         }
         break
+      case "toimg":
+	if (!isQuotedSticker) return reply("send sticker and reply with caption " + prefix + "toimg");
+	if (lin.message.extendedTextMessage.contextInfo.quotedMessage.stickerMessage.isAnimated === true){
+          reply("Maaf tidak mendukung sticker gif");
+        } else {
+          var media2 = await downloadM("save")
+	  var ran = getRandom('.png')
+          exec(`ffmpeg -i ${media2} ${ran}`, (err) => {
+	  fs.unlinkSync(media2)
+            if (err) {
+	      reply(util.format(err))
+              fs.unlinkSync(ran)
+	    } else {
+	      var buffer = fs.readFileSync(ran)
+	      lintod.sendMessage(from, buffer, MessageType.image, {quoted: lin, caption: 'success'})
+	      fs.unlinkSync(ran)
+	    }
+	  })
+	 }
+         break
       case "tictactoe":
         var Tictac = require('./lib/tiktaktu.js')
         await Tictac.startSolo(sender, from)
