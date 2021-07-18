@@ -2,6 +2,7 @@ const { MessageType, mentionedJid, processTime } = require("@adiwajshing/baileys
 const moment = require("moment-timezone");
 const fs = require('fs');
 const chalk = require("chalk");
+const { convertSticker } = require("./lib/sticker.js");
 const { setppig, block, unblock, komen, login, logout, follow, upinstastory, unfollow, likepost, unlikepost } = require("./lib/handlerIg.js");
 const { y2mateV, y2mateA } = require("./lib/ytdl.js");
 const { Log, LogError } = require("./lib/log.js");
@@ -19,6 +20,8 @@ const lintod = conn.lintod
 let multipref = true;
 let self = true;
 let noprefix = false;
+let author = "@linlxn.8"
+let pack = "github.com/mccnlight"
 
 lintod.on('chat-update', async(lin) => {
   try {
@@ -134,6 +137,17 @@ lintod.on('chat-update', async(lin) => {
     }
 
     switch (command) {
+      case "sticker":
+        if (type === "imageMessage" || isQuotedImage){
+          var dlfile = await downloadM("save");
+          var bas64 = `data:image/jpeg;base64,${dlfile.toString('base64')}`
+          var mantap = await convertSticker(bas64, `${author}`, `${pack}`);
+          var imageBuffer = new Buffer.from(mantap, 'base64');
+          lintod.sendMessage(from, imageBuffer, sticker, {quoted: lin});
+          } else {
+	    reply("Reply foto dengan caption "+prefix+"sticker")
+          }
+        break
       case "button":
         var buttons = [{ buttonId: 'example', buttonText: { displayText: 'yes' }, type: 1 }, { buttonId: 'example2', buttonText: { displayText: 'no' }, type: 1 }]
         var buttonsMessage = { contentText: `Do you love me?`, footerText: 'click this', buttons: buttons, headerType: 1 }
