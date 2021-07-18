@@ -139,7 +139,7 @@ lintod.on('chat-update', async(lin) => {
     switch (command) {
       case "sticker":
         if (type === "imageMessage" || isQuotedImage){
-          var dlfile = await downloadM("save");
+          var dlfile = await downloadM();
           var bas64 = `data:image/jpeg;base64,${dlfile.toString('base64')}`
           var mantap = await convertSticker(bas64, `${author}`, `${pack}`);
           var imageBuffer = new Buffer.from(mantap, 'base64');
