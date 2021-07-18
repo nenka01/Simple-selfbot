@@ -77,9 +77,21 @@ lintod.on('chat-update', async(lin) => {
       lintod.sendMessage(from, text, MessageType.text, {
         quoted: lin, contextInfo: {
           "mentionedJid": semdertag
-        }});
+      }});
     }
-
+    
+    const sendContact = async(jid, number, name, bio = "Kontak", quoted, options) => {
+      // TODO: Business Vcard
+      number = number.replace(/[^0-9]/g, '')
+      let njid = number + '@s.whatsapp.net'
+      let { isBusiness } = await lintod.isOnWhatsApp(njid) || { isBusiness: false }
+      let vcard = 'BEGIN:VCARD\n' + 'VERSION:3.0\n' + 'FN:' + name + '\n' + 'ORG:'+bio+'\n' + 'TEL;type=CELL;type=VOICE;waid=' + number + ':+' + number + '\n' + 'END:VCARD'.trim()
+      return await lintod.sendMessage(jid, {
+         displayName: name,
+         vcard
+      }, MessageType.contact, { quoted, ...options })
+    } // example use await sendContact(from, "0", "WhatsApp", "a simple bot made with nodejs", lin)
+    
     const command = comm
     const args = body.trim().split(/ +/).slice(1)
     const isCmd = cmd
