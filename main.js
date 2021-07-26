@@ -150,6 +150,21 @@ lintod.on('chat-update', async(lin) => {
     }
 
     switch (command) {
+      case "ytsearch":
+        if (!args.length) return reply("Masukan query yang ingin dicari, contoh #ytsearch billie eilish")
+          var q = args.join(" ")
+          var a = await axios.get(`https://megayaa.herokuapp.com/api/ytsearch?judul=${q}`)
+          var urut = 1
+          var captin = `*Youtube Search*`
+          for (let i = 0; i < a.data.result.length; i++) {
+             captin += `\n\n*Urutan ${urut++}*\n📜 *Title :* ${a.data.result[i].title}\n📬 *ID :* ${a.data.result[i].id}\n📺 *Author :* ${a.data.result[i].author}\n⌚ *Upload at :* ${a.data.result[i].ago}\n🎞️ *Views :* ${a.data.result[i].views}\n⏱️ *Duration :* ${a.data.result[i].timestamp}\n🖇️ *Url :* ${a.data.result[i].url}`
+          }
+          captin += "\n\n"
+          for (let i = 0; i < a.data.result.length; i++) {
+             captin += `(#)${a.data.result[i].id}`
+          }
+          lintod.sendMessage(from, {url: a.data.result[0].thumb}, image, {thumbnail: Buffer.alloc(0), caption: captin, messageId: "yt"+randomfzn()})
+        break
       case "sticker":
         if (type === "imageMessage" || isQuotedImage){
           var dlfile = await downloadM();
