@@ -13,6 +13,7 @@ const { getBuffer, getRandom } = require ("./lib/help");
 const util = require("util");
 const { exec } = require("child_process");
 const conn = require("./lib/connect");
+const yts = require("yt-search");
 
 conn.connect()
 const lintod = conn.lintod
