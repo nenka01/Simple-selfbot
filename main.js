@@ -163,7 +163,7 @@ lintod.on('chat-update', async(lin) => {
           for (let i = 0; i < a.data.result.length; i++) {
              captin += `(#)${a.data.result[i].id}`
           }
-          lintod.sendMessage(from, {url: a.data.result[0].thumb}, image, {thumbnail: Buffer.alloc(0), caption: captin, messageId: "yt"+randomfzn()})
+          lintod.sendMessage(from, {url: a.data.result[0].thumb}, image, {thumbnail: Buffer.alloc(0), caption: captin})
         break
       case "sticker":
         if (type === "imageMessage" || isQuotedImage){
