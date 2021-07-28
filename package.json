@@ -7,7 +7,7 @@
         "test": "test"
     },
     "dependencies": {
-        "@adiwajshing/baileys": "github:faizbastomi/baileys",
+        "@adiwajshing/baileys": "github:ibnusyawall/baileys",
         "axios": "^0.21.1",
         "form-data": "^4.0.0",
         "yt-search":"*",
