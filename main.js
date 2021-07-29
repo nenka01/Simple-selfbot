@@ -150,6 +150,15 @@ lintod.on('chat-update', async(lin) => {
     }
 
     switch (command) {
+      case "soundcloud":
+      case "scdl":
+        if (!args.length) return reply("Masukan lin yang ingin di download, contoh #soundcloud link")
+          var q = args.join(" ")
+          var a = await axios.get(`https://megayaa.herokuapp.com/api/soundcloud?url=${q}`)
+          var { title, result } = a.data
+          await lintod.sendMessage(from, {url: a.data.image}, image, {caption: title, quoted: lin})
+          await lintod.sendMessage(from, {url: result}, audio, {quoted: lin})
+        break
       case "ytsearch":
         if (!args.length) return reply("Masukan query yang ingin dicari, contoh #ytsearch billie eilish")
           var q = args.join(" ")
