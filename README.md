@@ -11,9 +11,10 @@
 
 A simple base selfbot
 
-### Dokumentasi baileys
+### Dokumentasi baileys & Rest Api
 
-[Klik di sini!](https://adiwajshing.github.io/Baileys/)
+[Baileys](https://adiwajshing.github.io/Baileys/)
+[Rest Api](https://megayaa.herokuapp.com/)
 
 ### Instalasi
 
